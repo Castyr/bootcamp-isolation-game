@@ -9,6 +9,8 @@ import org.bootcamp.isolationgame.core.models.GameState;
 import java.util.Observable;
 import java.util.Observer;
 
+import static javafx.application.Platform.runLater;
+
 public class TurnTextField extends StackPane implements Observer {
     private Text text = new Text();
     private int player = -1;
@@ -24,11 +26,13 @@ public class TurnTextField extends StackPane implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        GameState state = (GameState) arg;
-        if (state != null && state.getCurrentPlayer() != player) {
-            player = state.getCurrentPlayer();
-            text.setText(String.format("Players %s turn", player));
-            text.setVisible(true);
-        }
+        runLater(() -> {
+            GameState state = (GameState) arg;
+            if (state != null && state.getCurrentPlayer() != player) {
+                player = state.getCurrentPlayer();
+                text.setText(String.format("Players %s turn", player));
+                text.setVisible(true);
+            }
+        });
     }
 }

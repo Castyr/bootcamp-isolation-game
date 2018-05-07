@@ -8,6 +8,6 @@ public class Invoker {
     }
 
     public void execute() {
-        command.execute();
+        (new Thread(() -> command.execute())).start();
     }
 }

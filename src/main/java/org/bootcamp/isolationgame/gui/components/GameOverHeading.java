@@ -9,6 +9,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.bootcamp.isolationgame.core.models.GameState;
 
+import static javafx.application.Platform.runLater;
+
 public class GameOverHeading extends StackPane implements Observer {
     private Text text = new Text();
 
@@ -24,13 +26,15 @@ public class GameOverHeading extends StackPane implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        GameState state = (GameState) arg;
-        if (state == null || !state.isGameOver()) {
-            text.setText("");
-            text.setVisible(false);
-            return;
-        }
-        text.setText(String.format("Game Over, Player %s won!", state.getWinner()));
-        text.setVisible(true);
+        runLater(() -> {
+            GameState state = (GameState) arg;
+            if (state == null || !state.isGameOver()) {
+                text.setText("");
+                text.setVisible(false);
+                return;
+            }
+            text.setText(String.format("Game Over, Player %s won!", state.getWinner()));
+            text.setVisible(true);
+        });
     }
 }

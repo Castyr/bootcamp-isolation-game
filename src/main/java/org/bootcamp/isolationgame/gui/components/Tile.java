@@ -13,6 +13,8 @@ import org.bootcamp.isolationgame.core.CommandFacade;
 import org.bootcamp.isolationgame.core.models.GameState;
 import org.bootcamp.isolationgame.core.utils.Config;
 
+import static javafx.application.Platform.runLater;
+
 public class Tile extends StackPane implements Observer {
     private int x;
     private int y;
@@ -54,28 +56,30 @@ public class Tile extends StackPane implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        GameState state = (GameState) arg;
-        if (state == null || state.getLastMove() == null
-                || state.getLastMove().getX() != x
-                || state.getLastMove().getY() != y) {
-            if (state.getLastMove() != null && state.getLastMove().getPlayer() == player) {
-                text.setStroke(Color.GRAY);
-            } else if (state.getLastMove() == null) {
-                text.setText("");
-                text.setVisible(false);
-                border.setFill(Color.BLACK);
+        runLater(() -> {
+            GameState state = (GameState) arg;
+            if (state == null || state.getLastMove() == null
+                    || state.getLastMove().getX() != x
+                    || state.getLastMove().getY() != y) {
+                if (state.getLastMove() != null && state.getLastMove().getPlayer() == player) {
+                    text.setStroke(Color.GRAY);
+                } else if (state.getLastMove() == null) {
+                    text.setText("");
+                    text.setVisible(false);
+                    border.setFill(Color.BLACK);
+                }
+                return;
             }
-            return;
-        }
-        player = state.getLastMove().getPlayer();
-        text.setText(player == 1 ? "o" : "x");
-        if (state.getLastMove().getPlayer() == 1) {
-            text.setStroke(Color.BLUE);
-        } else {
-            text.setStroke(Color.RED);
-        }
+            player = state.getLastMove().getPlayer();
+            text.setText(player == 1 ? "o" : "x");
+            if (state.getLastMove().getPlayer() == 1) {
+                text.setStroke(Color.BLUE);
+            } else {
+                text.setStroke(Color.RED);
+            }
 
-        text.setVisible(true);
-        border.setFill(null);
+            text.setVisible(true);
+            border.setFill(null);
+        });
     }
 }
