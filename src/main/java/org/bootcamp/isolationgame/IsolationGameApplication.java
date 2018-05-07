@@ -8,6 +8,7 @@ import org.bootcamp.isolationgame.core.services.AiPlayer;
 import org.bootcamp.isolationgame.core.services.GameManager;
 import org.bootcamp.isolationgame.core.services.IsoGameManager;
 import org.bootcamp.isolationgame.core.strategies.IsolationRuleStrategy;
+import org.bootcamp.isolationgame.core.strategies.MinMaxAiMoveStrategy;
 import org.bootcamp.isolationgame.core.strategies.RandomAiMoveStrategy;
 import org.bootcamp.isolationgame.core.strategies.RuleStrategy;
 import org.bootcamp.isolationgame.gui.factories.LayoutFactory;
@@ -21,7 +22,7 @@ public class IsolationGameApplication extends Application {
         RuleStrategy ruleStrategy = new IsolationRuleStrategy();
         gameManager.setRuleStrategy(ruleStrategy);
         CommandFacade commandFacade = new CommandFacade(gameManager);
-        AiPlayer aiPlayer = new AiPlayer(new RandomAiMoveStrategy(ruleStrategy), commandFacade);
+        AiPlayer aiPlayer = new AiPlayer(new MinMaxAiMoveStrategy(ruleStrategy), commandFacade);
         gameManager.addObserver(aiPlayer);
 
         // setup UI
