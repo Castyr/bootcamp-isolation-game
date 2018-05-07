@@ -10,7 +10,7 @@ import org.bootcamp.isolationgame.core.services.IsoGameManager;
 import org.bootcamp.isolationgame.core.strategies.IsolationRuleStrategy;
 import org.bootcamp.isolationgame.core.strategies.MinMaxAiMoveStrategy;
 import org.bootcamp.isolationgame.core.strategies.RuleStrategy;
-import org.bootcamp.isolationgame.gui.builders.LayoutBuilder;
+import org.bootcamp.isolationgame.gui.factory.LayoutBuilder;
 
 public class IsolationGameApplication extends Application {
 

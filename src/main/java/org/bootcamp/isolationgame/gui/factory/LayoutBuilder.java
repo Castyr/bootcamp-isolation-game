@@ -1,4 +1,4 @@
-package org.bootcamp.isolationgame.gui.builders;
+package org.bootcamp.isolationgame.gui.factory;
 
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
