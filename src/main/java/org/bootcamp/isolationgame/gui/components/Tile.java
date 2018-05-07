@@ -13,8 +13,6 @@ import org.bootcamp.isolationgame.core.CommandFacade;
 import org.bootcamp.isolationgame.core.models.GameState;
 import org.bootcamp.isolationgame.core.utils.Config;
 
-import static javafx.application.Platform.runLater;
-
 public class Tile extends StackPane implements Observer {
     private int x;
     private int y;
@@ -56,7 +54,7 @@ public class Tile extends StackPane implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        runLater(() -> {
+        javafx.application.Platform.runLater(() -> {
             GameState state = (GameState) arg;
             if (state == null || state.getLastMove() == null
                     || state.getLastMove().getX() != x

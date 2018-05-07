@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import org.bootcamp.isolationgame.core.CommandFacade;
 
 public class RestartButton extends Button {
-    private CommandFacade commandFacade;
+    private final CommandFacade commandFacade;
 
     public RestartButton(CommandFacade commandFacade) {
         this.commandFacade = commandFacade;

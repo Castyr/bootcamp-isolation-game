@@ -1,4 +1,4 @@
-package org.bootcamp.isolationgame.gui.factories;
+package org.bootcamp.isolationgame.gui.builders;
 
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
@@ -11,12 +11,12 @@ import org.bootcamp.isolationgame.gui.components.RestartButton;
 import org.bootcamp.isolationgame.gui.components.Tile;
 import org.bootcamp.isolationgame.gui.components.TurnTextField;
 
-public class LayoutFactory {
+public class LayoutBuilder {
     private Tile[][] grid;
     private final GameManager gameManager;
     private final CommandFacade commandFacade;
 
-    public LayoutFactory(GameManager gameManager, CommandFacade commandFacade) {
+    public LayoutBuilder(GameManager gameManager, CommandFacade commandFacade) {
         this.gameManager = gameManager;
         this.commandFacade = commandFacade;
         this.grid = new Tile[Config.getxTiles()][Config.getyTiles()];
@@ -27,7 +27,7 @@ public class LayoutFactory {
         root.setPrefSize(Config.getW(), Config.getH());
         GameOverHeading gameOverHeading = new GameOverHeading();
         root.getChildren().add(gameOverHeading);
-        RestartButton button = new RestartButton(this.commandFacade);
+        RestartButton button = new RestartButton(commandFacade);
         root.getChildren().add(button);
         TurnTextField text = new TurnTextField();
         root.getChildren().add(text);

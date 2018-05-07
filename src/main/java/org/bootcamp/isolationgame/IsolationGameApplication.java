@@ -9,9 +9,8 @@ import org.bootcamp.isolationgame.core.services.GameManager;
 import org.bootcamp.isolationgame.core.services.IsoGameManager;
 import org.bootcamp.isolationgame.core.strategies.IsolationRuleStrategy;
 import org.bootcamp.isolationgame.core.strategies.MinMaxAiMoveStrategy;
-import org.bootcamp.isolationgame.core.strategies.RandomAiMoveStrategy;
 import org.bootcamp.isolationgame.core.strategies.RuleStrategy;
-import org.bootcamp.isolationgame.gui.factories.LayoutFactory;
+import org.bootcamp.isolationgame.gui.builders.LayoutBuilder;
 
 public class IsolationGameApplication extends Application {
 
@@ -26,7 +25,7 @@ public class IsolationGameApplication extends Application {
         gameManager.addObserver(aiPlayer);
 
         // setup UI
-        Scene scene = new Scene(new LayoutFactory(gameManager, commandFacade).createLayout());
+        Scene scene = new Scene(new LayoutBuilder(gameManager, commandFacade).createLayout());
         stage.setScene(scene);
         stage.show();
     }
