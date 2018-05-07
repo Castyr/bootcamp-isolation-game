@@ -4,6 +4,7 @@ import java.awt.*;
 
 import org.bootcamp.isolationgame.core.commands.Invoker;
 import org.bootcamp.isolationgame.core.commands.MoveCommand;
+import org.bootcamp.isolationgame.core.commands.ResetCommand;
 import org.bootcamp.isolationgame.core.services.GameManager;
 
 public class CommandFacade {
@@ -16,6 +17,11 @@ public class CommandFacade {
 
     public void move(Point movePosition, int player) {
         invoker.setCommand(new MoveCommand(player, movePosition.x, movePosition.y, gameManager));
+        invoker.execute();
+    }
+
+    public void reset() {
+        invoker.setCommand(new ResetCommand(gameManager));
         invoker.execute();
     }
 }

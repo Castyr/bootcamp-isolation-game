@@ -27,7 +27,7 @@ public class LayoutFactory {
         root.setPrefSize(Config.getW(), Config.getH());
         GameOverHeading gameOverHeading = new GameOverHeading();
         root.getChildren().add(gameOverHeading);
-        RestartButton button = new RestartButton();
+        RestartButton button = new RestartButton(commandFacade);
         root.getChildren().add(button);
         TurnTextField text = new TurnTextField();
         root.getChildren().add(text);
