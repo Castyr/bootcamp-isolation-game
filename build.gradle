@@ -1,0 +1,46 @@
+group 'org.bootcamp'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'javafx-gradle-plugin'
+apply plugin: 'checkstyle'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jfx {
+    // minimal requirement for jfxJar-task
+    mainClass = 'org.bootcamp.isolationgame.IsolationGameApplication'
+
+    // minimal requirement for jfxNative-task
+    vendor = 'UltimateSoftware'
+}
+
+checkstyle {
+    toolVersion = "8.7"
+    configFile = new File(rootDir, "checkstyle.xml")
+}
+
+checkstyleMain {
+    source = fileTree('src/main') {
+        excludes = ['*.properties', '**/resources/**']
+    }
+}
