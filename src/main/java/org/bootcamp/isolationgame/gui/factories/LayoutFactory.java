@@ -27,11 +27,12 @@ public class LayoutFactory {
         root.setPrefSize(Config.getW(), Config.getH());
         GameOverHeading gameOverHeading = new GameOverHeading();
         root.getChildren().add(gameOverHeading);
-        RestartButton button = new RestartButton();
+        RestartButton button = new RestartButton(this.commandFacade);
         root.getChildren().add(button);
         TurnTextField text = new TurnTextField();
         root.getChildren().add(text);
         gameManager.addObserver(gameOverHeading);
+        gameManager.addObserver(text);
         for (int y = 1; y < Config.getyTiles(); y++) {
             for (int x = 0; x < Config.getxTiles(); x++) {
                 Tile tile = new Tile(x, y, commandFacade);

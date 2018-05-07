@@ -4,10 +4,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import org.bootcamp.isolationgame.core.models.GameState;
 
-public class TurnTextField extends StackPane {
+import java.util.Observable;
+import java.util.Observer;
+
+public class TurnTextField extends StackPane implements Observer {
     private Text text = new Text();
-
+    private int player = -1;
     public TurnTextField() {
         text.setFont(Font.font(18));
         text.setStroke(Color.BLACK);
@@ -16,5 +20,15 @@ public class TurnTextField extends StackPane {
         setTranslateX(400);
         setTranslateY(10);
         getChildren().addAll(text);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        GameState state = (GameState) arg;
+        if (state != null && state.getCurrentPlayer() != player) {
+            player = state.getCurrentPlayer();
+            text.setText(String.format("Players %s turn", player));
+            text.setVisible(true);
+        }
     }
 }
